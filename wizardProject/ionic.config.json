@@ -1,0 +1,7 @@
+{
+  "name": "wizardProject",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
