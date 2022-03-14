@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio de Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    
+    <!--<ion-card-header>
+      <ion-card-title>Credenciales</ion-card-title>
+    </ion-card-header>-->
+
+    <ion-card-content>
+      <form >
+
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+        <!--<ion-item *ngIf="email.invalid && email.touched" lines="none">
+          <ion-text color="danger" class="form-error">
+            Please enter a valid email address.
+          </ion-text>
+        </ion-item>-->
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <!--<ion-item *ngIf="password.invalid && password.touched" lines="none">
+          <ion-text color="danger" class="form-error">
+            Password is required.
+          </ion-text>
+        </ion-item>-->
+        
+        <ion-button type="submit" expand="block">Iniciar Sesion</ion-button>
+
+      </form>
+
+      <ion-text class="extra-options">
+        Aún no tienes una cuenta?
+        <a [routerLink]="['/register']">Registrate</a>
+      </ion-text>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
