@@ -5,18 +5,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card class="auth-form">
     
     <!--<ion-card-header>
       <ion-card-title>Credenciales</ion-card-title>
     </ion-card-header>-->
 
     <ion-card-content>
-      <form >
-
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+ 
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input type="email"></ion-input>
+          <ion-input type="email" formControllerName="email"></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="email.invalid && email.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -26,7 +26,7 @@
 
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControllerName="password"></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="password.invalid && password.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -34,7 +34,7 @@
           </ion-text>
         </ion-item>-->
         
-        <ion-button type="submit" expand="block">Iniciar Sesion</ion-button>
+        <ion-button type="submit" expand="block" [disabled]="!form.valid">Iniciar Sesion</ion-button>
 
       </form>
 

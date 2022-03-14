@@ -1,0 +1,19 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 1em;
+  
+    ion-button {
+      margin-top: 1em;
+    }
+  }
+  
+  .extra-options {
+    display: block;
+    margin-top: 1em;
+  }
+  
+  .form-error {
+    font-size: 0.8em;
+  }
