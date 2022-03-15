@@ -70,8 +70,8 @@ export class RegisterPage{
     if (d_email && d_pws && d_cpws) {
       if (d_pws == d_cpws) {
         console.log('registrando');
-        this.authService.register(d_email, d_pws);
-        this.router.navigate(['/referencias']);
+        // this.authService.register(d_email, d_pws)
+        //   .then(() => this.router.navigate(['/referencias']));
       } else {
         console.log("pas's not match")
       }

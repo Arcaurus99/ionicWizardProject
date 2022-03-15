@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-const auth = getAuth();
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-sesion',
@@ -16,6 +14,7 @@ export class SesionPage{
   form: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -25,24 +24,14 @@ export class SesionPage{
     });
   }
 
-  login(mail, pass) {
+  sesion(mail, pass) {
     const d_email = mail.value;
     const d_pws = pass.value;
     
     if (d_email && d_pws) {
       console.log('iniciando sesion')
-      signInWithEmailAndPassword(auth, d_email, d_pws)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          this.router.navigate(['/referencias']);
-          console.log('data sended');
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log('sesion problem');
-        });
+      // this.authService.login(d_email, d_pws)
+      //   .then(() => this.router.navigate(['/referencias']));
     } else {
       console.log('missed values')
     }
