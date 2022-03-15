@@ -37,14 +37,11 @@ export class RegisterPage{
     private router: Router
   ) {
     this.form = this.fb.group({
-      // email: ['', [Validators.email, Validators.required]],
-      // password: ['', [Validators.required]],
-      // confirmPassword: [''],
-      email: [''],
-      password: [''],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required]],
       confirmPassword: [''],
     },
-    //{ validators: checkPasswords }
+    { validators: checkPasswords }
     );
     console.log(this.email.value)
     console.log(this.password.value)

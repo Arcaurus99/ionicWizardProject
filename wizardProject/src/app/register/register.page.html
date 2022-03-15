@@ -19,31 +19,31 @@
           <ion-label position="floating">E-mail</ion-label>
           <ion-input type="email" formControllerName="email"></ion-input>
         </ion-item>
-        <!--<ion-item *ngIf="email.invalid && email.touched" lines="none">
+        <ion-item *ngIf="email.invalid && email.touched" lines="none">
           <ion-text color="danger" class="form-error">
             Please enter a valid email address.
           </ion-text>
-        </ion-item>-->
+        </ion-item>
 
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input type="password" formControllerName="password"></ion-input>
         </ion-item>
-        <!--<ion-item *ngIf="password.invalid && password.touched" lines="none">
+        <ion-item *ngIf="password.invalid && password.touched" lines="none">
           <ion-text color="danger" class="form-error">
             Password is required.
           </ion-text>
-        </ion-item>-->
+        </ion-item>
 
         <ion-item>
           <ion-label position="floating">Confirmación Contraseña </ion-label>
           <ion-input type="password" formControllerName="confirmPassword"></ion-input>
         </ion-item>
-        <!--<ion-item *ngIf="form.hasError('notEqual') && confirmPassword.touched" lines="none">
+        <ion-item *ngIf="form.hasError('notEqual') && confirmPassword.touched" lines="none">
           <ion-text color="danger" class="form-error">
             Passwords does not match.
           </ion-text>
-        </ion-item>-->
+        </ion-item>
         
         <ion-button type="submit" expand="block">Registrarse</ion-button>
 
