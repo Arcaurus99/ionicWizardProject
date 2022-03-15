@@ -63,6 +63,34 @@ export class RegisterPage{
     return this.form.get('confirmPassword');
   }
 
+  register(mail, pass, cpass) {
+    const d_email = mail.value;
+    const d_pws = pass.value;
+    const d_cpws = cpass.value;
+    
+    if (d_email && d_pws && d_cpws) {
+      if (d_pws == d_cpws) {
+        console.log('registrando')
+        createUserWithEmailAndPassword(auth, d_email, d_pws)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            this.router.navigate(['/referencias']);
+            console.log('data sended');
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log('register problem');
+          });
+      } else {
+        console.log('error registro')
+      }
+    } else {
+      console.log('missed values')
+    }
+  }
+
   onSubmit() {
     console.log('Clicked! Validation:', this.form.valid)
     if (this.form.valid) {
