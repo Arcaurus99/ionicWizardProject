@@ -84,7 +84,7 @@ export class RegisterPage{
             console.log('register problem');
           });
       } else {
-        console.log('error registro')
+        console.log("pas's not match")
       }
     } else {
       console.log('missed values')
@@ -95,7 +95,7 @@ export class RegisterPage{
     console.log('Clicked! Validation:', this.form.valid)
     if (this.form.valid) {
       const { email, password } = this.form.value;
-      console.log(email, ' - ' , password);
+      console.log('Registered:', email, ' - ', password);
     }
     
     console.log(this.email.value, this.password.value, this.confirmPassword.value)

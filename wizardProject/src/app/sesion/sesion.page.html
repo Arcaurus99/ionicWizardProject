@@ -16,7 +16,7 @@
  
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input type="email" formControllerName="email"></ion-input>
+          <ion-input type="email" #mail formControllerName="email"></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="email.invalid && email.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -26,7 +26,7 @@
 
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" formControllerName="password"></ion-input>
+          <ion-input type="password" #pass formControllerName="password"></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="password.invalid && password.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -34,7 +34,9 @@
           </ion-text>
         </ion-item>-->
         
-        <ion-button type="submit" expand="block" [disabled]="!form.valid">Iniciar Sesion</ion-button>
+        <ion-button type="submit" expand="block" (click)="login(mail, pass)">Iniciar Sesion</ion-button>
+        
+        <!--<ion-button type="submit" expand="block" [disabled]="!form.valid" (click)="login(mail, pass)">Iniciar Sesion</ion-button>-->
 
       </form>
 
