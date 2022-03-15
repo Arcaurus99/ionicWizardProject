@@ -8,12 +8,21 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'sesion',
+    redirectTo: 'referencias',
     pathMatch: 'full'
   },
   {
     path: 'referencias',
-    loadChildren: () => import('./referencias/referencias.module').then( m => m.ReferenciasPageModule)
+    children:[
+      {
+        path: "",
+        loadChildren: () => import('./referencias/referencias.module').then( m => m.ReferenciasPageModule)
+      },
+      {
+        path: ":placeId",
+        loadChildren: () => import('./referencias/referencias-detail/referencias-detail.module').then( m => m.ReferenciasDetailPageModule)
+      }
+    ]
   },
   {
     path: 'register',
@@ -22,7 +31,8 @@ const routes: Routes = [
   {
     path: 'sesion',
     loadChildren: () => import('./sesion/sesion.module').then( m => m.SesionPageModule)
-  },  {
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },

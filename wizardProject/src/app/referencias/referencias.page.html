@@ -20,5 +20,16 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-card *ngFor="let item of lista" [routerLink]="['/referencias-detail, referencia.id']">
+      <ion-card-content>
 
+        <ion-item>
+          <ion-label position="floanting"> Título publicación: </ion-label>
+          <ion-label type="text">{{item.titulopub}}</ion-label>
+        </ion-item>
+
+       </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

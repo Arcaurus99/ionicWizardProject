@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ReferenciasPage
+  },  {
+    path: 'referencias-detail',
+    loadChildren: () => import('./referencias-detail/referencias-detail.module').then( m => m.ReferenciasDetailPageModule)
   }
+
 ];
 
 @NgModule({
