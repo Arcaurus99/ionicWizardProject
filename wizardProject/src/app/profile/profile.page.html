@@ -8,7 +8,7 @@
     <ion-title>Profile</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="logOut()">
         <ion-icon name="log-out-outline" style="height: 25px; width: 25px;"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,13 +19,18 @@
 <ion-content>
 
   <ion-item>
-    <ion-label position="floating">E-mail</ion-label>
-    <ion-input type="email" #mail formControllerName="email"></ion-input>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" formControllerName="password" value="{{user.displayName}}"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" #pass formControllerName="password"></ion-input>
+    <ion-label position="floating">E-mail</ion-label>
+    <ion-input type="email" formControllerName="email" value="{{user.email}}"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">PhotoURL</ion-label>
+    <ion-input type="text" formControllerName="password" value="{{user.photoURL}}"></ion-input>
   </ion-item>
   
 </ion-content>

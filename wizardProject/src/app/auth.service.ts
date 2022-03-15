@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
@@ -10,7 +11,7 @@ let user = auth.currentUser;
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   async login(email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
@@ -19,6 +20,7 @@ export class AuthService {
         user = userCredential.user;
         console.log('data sended');
         // console.log(user)
+        this.router.navigate(['/referencias']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -34,6 +36,7 @@ export class AuthService {
         user = userCredential.user;
         console.log('data sended');
         // console.log(user)
+        this.router.navigate(['/referencias']);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -45,23 +48,26 @@ export class AuthService {
   async logout() {
     if (user !== null) {
       signOut(auth).then(() => {
-        console.log('logout success')
+        user == null;
+        console.log('logout success');
       }).catch((error) => {
-        console.log('logout error')
+        console.log('logout error');
       });
     }
   }
 
-  async getUser() {
+  getUser() {
     if (user !== null) {
+
       const displayName = user.displayName;
       const email = user.email;
       const photoURL = user.photoURL;
       const emailVerified = user.emailVerified;
 
-      console.log(displayName, email, photoURL, emailVerified)
+      // console.log(user);
+      // console.log(displayName, email, photoURL, emailVerified);
 
-      return user
+      return user;
     } else {
       console.log('no user loged')
     }

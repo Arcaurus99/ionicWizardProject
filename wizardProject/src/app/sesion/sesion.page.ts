@@ -33,7 +33,7 @@ export class SesionPage{
       console.log('iniciando sesion')
       //const authService = this.injector.get<AuthService>(AuthService);    # Get Authservice by Injection
       this.authService.login(d_email, d_pws)
-        .then(() => this.router.navigate(['/referencias']));
+        //.then(() => this.router.navigate(['/referencias']));
     } else {
       console.log('missed values')
     }
