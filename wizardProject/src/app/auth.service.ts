@@ -10,14 +10,15 @@ let user = auth.currentUser;
 })
 export class AuthService {
 
-  constructor(private auth: AuthService) { }
+  constructor() { }
 
-  async login(email, password) {
+  async login(email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
+        user = userCredential.user;
         console.log('data sended');
+        // console.log(user)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -26,12 +27,13 @@ export class AuthService {
       });
   }
 
-  async register(email, password) {
+  async register(email: string, password: string) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
         user = userCredential.user;
         console.log('data sended');
+        // console.log(user)
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -56,6 +58,8 @@ export class AuthService {
       const email = user.email;
       const photoURL = user.photoURL;
       const emailVerified = user.emailVerified;
+
+      console.log(displayName, email, photoURL, emailVerified)
 
       return user
     } else {
