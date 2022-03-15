@@ -31,7 +31,8 @@ export class RegisterPage{
   form: FormGroup;
 
   constructor(
-    private injector: Injector,
+    private authService: AuthService,
+    // private injector: Injector,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -70,8 +71,8 @@ export class RegisterPage{
     if (d_email && d_pws && d_cpws) {
       if (d_pws == d_cpws) {
         console.log('registrando');
-        const authService = this.injector.get(AuthService);
-        authService.register(d_email, d_pws)
+        //const authService = this.injector.get(AuthService);
+        this.authService.register(d_email, d_pws)
           .then(() => this.router.navigate(['/referencias']));
       } else {
         console.log("pas's not match")

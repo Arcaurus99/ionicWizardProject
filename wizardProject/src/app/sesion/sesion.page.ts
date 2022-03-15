@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';    // Injector Import 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,8 @@ export class SesionPage{
   form: FormGroup;
 
   constructor(
-    private injector: Injector,
+    private authService: AuthService,
+    // private injector: Injector,    # Injector Constructor
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -30,8 +31,8 @@ export class SesionPage{
     
     if (d_email && d_pws) {
       console.log('iniciando sesion')
-      const authService = this.injector.get<AuthService>(AuthService);
-      authService.login(d_email, d_pws)
+      //const authService = this.injector.get<AuthService>(AuthService);    # Get Authservice by Injection
+      this.authService.login(d_email, d_pws)
         .then(() => this.router.navigate(['/referencias']));
     } else {
       console.log('missed values')

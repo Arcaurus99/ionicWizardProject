@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 
 import { AuthService } from 'src/app/auth.service';
 
@@ -9,11 +9,11 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private injector: Injector) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    const authService = this.injector.get(AuthService);
-    const user = authService.getUser();
+    //const authService = this.injector.get(AuthService);
+    const user = this.authService.getUser();
   }
 
 }
