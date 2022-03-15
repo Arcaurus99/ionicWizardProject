@@ -30,7 +30,7 @@ export class SesionPage{
     const d_pws = pass.value;
     
     if (d_email && d_pws) {
-      console.log('registrando')
+      console.log('iniciando sesion')
       signInWithEmailAndPassword(auth, d_email, d_pws)
         .then((userCredential) => {
           // Signed in 
@@ -41,7 +41,7 @@ export class SesionPage{
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log('register problem');
+          console.log('sesion problem');
         });
     } else {
       console.log('missed values')

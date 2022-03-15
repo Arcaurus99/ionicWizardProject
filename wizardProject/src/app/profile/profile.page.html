@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sesion"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Profile</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="log-out-outline" style="height: 25px; width: 25px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label position="floating">E-mail</ion-label>
+    <ion-input type="email" #mail formControllerName="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" #pass formControllerName="password"></ion-input>
+  </ion-item>
+  
+</ion-content>
