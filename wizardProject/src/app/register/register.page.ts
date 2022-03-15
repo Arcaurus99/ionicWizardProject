@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
+import { Component } from '@angular/core';
+import { 
+  AbstractControl, 
+  FormBuilder, 
+  FormGroup, 
+  ValidationErrors, 
+  ValidatorFn, 
+  Validators 
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ const auth = getAuth();
 const checkPasswords: ValidatorFn = (
   group: AbstractControl
 ): ValidationErrors | null => {
+  console.log(group.get('password').value, group.get('confirmPassword').value);
   const password = group.get('password').value;
   const confirmPassword = group.get('confirmPassword').value;
 
@@ -25,7 +26,7 @@ const checkPasswords: ValidatorFn = (
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  styleUrls: ['./register.page.scss']
 })
 export class RegisterPage{
 
@@ -36,12 +37,18 @@ export class RegisterPage{
     private router: Router
   ) {
     this.form = this.fb.group({
-      email: ['ruslanguns+rusgunx@gmail.com', [Validators.required]],
-      password: ['', [Validators.required]],
+      // email: ['', [Validators.email, Validators.required]],
+      // password: ['', [Validators.required]],
+      // confirmPassword: [''],
+      email: [''],
+      password: [''],
       confirmPassword: [''],
     },
-    { validators: checkPasswords }
+    //{ validators: checkPasswords }
     );
+    console.log(this.email.value)
+    console.log(this.password.value)
+    console.log(this.confirmPassword.value)
   }
 
   get email() {
@@ -57,19 +64,29 @@ export class RegisterPage{
   }
 
   onSubmit() {
+    console.log('Clicked! Validation:', this.form.valid)
     if (this.form.valid) {
       const { email, password } = this.form.value;
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          this.router.navigate(['/referencias'])
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+      console.log(email, ' - ' , password);
     }
+    
+    console.log(this.email.value, this.password.value, this.confirmPassword.value)
+    console.log(this.form.get('email'), this.form.get('password'), this.form.get('confirmPassword'));
+    // if (this.password.value == this.confirmPassword.value) {
+    //   createUserWithEmailAndPassword(auth, this.email.value, this.password.value)
+    //     .then((userCredential) => {
+    //       // Signed in 
+    //       const user = userCredential.user;
+    //       this.router.navigate(['/referencias']);
+    //       console.log('data sended');
+    //     })
+    //     .catch((error) => {
+    //       const errorCode = error.code;
+    //       const errorMessage = error.message;
+    //       console.log('register problem');
+    //     });
+    // }
+
   }
 
 }
