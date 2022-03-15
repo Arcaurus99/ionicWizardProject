@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth();
+let user = auth.currentUser;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user$ = this.auth.authState;
-
   constructor(
     private auth: AuthService,
   ) { }
 
-  async authRegister(email, password) {
+  async register(email, password) {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in 

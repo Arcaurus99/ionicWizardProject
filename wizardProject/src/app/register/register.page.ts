@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthRegister } from 'src\app\auth.service';
+import { AuthService } from 'src/app/auth.service';
 
 const checkPasswords: ValidatorFn = (
   group: AbstractControl
@@ -31,6 +31,7 @@ export class RegisterPage{
   form: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -69,7 +70,7 @@ export class RegisterPage{
     if (d_email && d_pws && d_cpws) {
       if (d_pws == d_cpws) {
         console.log('registrando');
-        this.authService.register();
+        this.authService.register(d_email, d_pws);
         this.router.navigate(['/referencias']);
       } else {
         console.log('error registro')
