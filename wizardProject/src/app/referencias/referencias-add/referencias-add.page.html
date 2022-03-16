@@ -15,17 +15,17 @@
 
     <ion-item>
       <ion-label position="floating">Título: </ion-label>
-      <ion-input type="text" #inputTitulopub></ion-input>
+      <ion-input type="text" #inputTitulopub required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Autores: </ion-label>
-      <ion-input type="text" #inputAutores></ion-input>
+      <ion-input type="text" #inputAutores required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Tipo: </ion-label>
-      <ion-select type="number" #inputTipopub>
+      <ion-select type="number" #inputTipopub required>
         <ion-select-option value="1">Artículo de Revista</ion-select-option>
         <ion-select-option value="2">Artículo de Evento</ion-select-option>
         <ion-select-option value="3">Otro</ion-select-option>
@@ -34,17 +34,17 @@
 
     <ion-item>
       <ion-label position="floating">Año: </ion-label>
-      <ion-input type="number" #inputAnyopub></ion-input>
+      <ion-input type="number" #inputAnyopub required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Evento/Revista: </ion-label>
-      <ion-input type="text" #inputEventorevista></ion-input>
+      <ion-input type="text" #inputEventorevista required></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label position="floating">Código: </ion-label>
-      <ion-input type="text" #inputDoi></ion-input>
+      <ion-input type="text" #inputDoi required></ion-input>
     </ion-item>
 
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">

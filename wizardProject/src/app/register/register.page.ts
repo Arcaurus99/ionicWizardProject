@@ -80,32 +80,6 @@ export class RegisterPage{
     } else {
       console.log('missed values')
     }
-    }
-
-  onSubmit() {
-    console.log('Clicked! Validation:', this.form.valid)
-    if (this.form.valid) {
-      const { email, password } = this.form.value;
-      console.log('Registered:', email, ' - ', password);
-    }
-    
-    console.log(this.email.value, this.password.value, this.confirmPassword.value)
-    console.log(this.form.get('email'), this.form.get('password'), this.form.get('confirmPassword'));
-    // if (this.password.value == this.confirmPassword.value) {
-    //   createUserWithEmailAndPassword(auth, this.email.value, this.password.value)
-    //     .then((userCredential) => {
-    //       // Signed in 
-    //       const user = userCredential.user;
-    //       this.router.navigate(['/referencias']);
-    //       console.log('data sended');
-    //     })
-    //     .catch((error) => {
-    //       const errorCode = error.code;
-    //       const errorMessage = error.message;
-    //       console.log('register problem');
-    //     });
-    // }
-
   }
 
 }

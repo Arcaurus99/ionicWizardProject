@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/sesion"></ion-back-button>
@@ -11,13 +11,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="auth-form">
+  <ion-card>
     <ion-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form">
  
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input type="email" #mail formControllerName="email"></ion-input>
+          <ion-input type="email" #mail formControllerName="email" required></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="email.invalid && email.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -27,7 +27,7 @@
 
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" #pass formControllerName="password"></ion-input>
+          <ion-input type="password" #pass formControllerName="password" required></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="password.invalid && password.touched" lines="none">
           <ion-text color="danger" class="form-error">
@@ -37,7 +37,7 @@
 
         <ion-item>
           <ion-label position="floating">Confirmación Contraseña </ion-label>
-          <ion-input type="password" #cpass formControllerName="confirmPassword"></ion-input>
+          <ion-input type="password" #cpass formControllerName="confirmPassword" required></ion-input>
         </ion-item>
         <!--<ion-item *ngIf="form.hasError('notEqual') && confirmPassword.touched" lines="none">
           <ion-text color="danger" class="form-error">
