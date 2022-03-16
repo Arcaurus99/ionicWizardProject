@@ -1,11 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
 
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon name="logo-ionic"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-button (click)="ngOnInit()">
+      <ion-icon name="logo-ionic"></ion-icon>
+      <ion-badge color="warning" mode="md" *ngIf="ifUpdate == true">Updates!</ion-badge >
+    </ion-button>
 
     <ion-title>Referencias</ion-title>
 
@@ -20,23 +19,27 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-card *ngFor="let item of data" [routerLink]="['/referencias', item.idreferencia]">
-      <ion-card-content>
+  <ion-list scrollX="false">
+    <ion-item *ngFor="let item of coll_data" (click)="ref()" [routerLink]="['/referencias', item.idreferencia]" style="padding: 10px 0 ">
 
-        <ion-item>
-          <ion-label position="floanting"> Título publicación: </ion-label>
-          <ion-label type="text">{{item.titulopub}}</ion-label>
-        </ion-item>
+      <ion-avatar slot="start">
+        <ion-img [src]="item.photoURL"></ion-img>
+      </ion-avatar>
+      <ion-label>{{item.titulopub}}</ion-label>
 
-       </ion-card-content>
-    </ion-card>
+    </ion-item>
   </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="" (click)="addNew()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
 </ion-content>
 
-<ion-footer collapse="fade ">
-  <ion-toolbar>
+<ion-footer class="ion-no-border">
+  <!--<ion-toolbar>
     <ion-button expand="block" (click)="addNew()">Agregar Referencia</ion-button>
-  </ion-toolbar>
+  </ion-toolbar>-->
 </ion-footer>

@@ -1,15 +1,138 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/referencias"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>referencias-detail</ion-title>
+    <ion-title (click)="ngOnInit()">{{ref.titulopub}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="delete()">
+        <ion-icon name="trash" style="height: 22px; width: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-img [src]="ref.photoURL"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row><ion-col>
+      <h1 class="ion-text-center">{{ref.autores}}</h1>
+    </ion-col></ion-row>
+
+  </ion-grid>
+  
+  <ion-grid class="ion-no-padding" *ngIf="ifEdit == false; else formEdit">
+
+    <ion-row><ion-col>
+      <ion-item>
+        <ion-label>Título: {{ref.titulopub}}</ion-label>
+      </ion-item>
+    </ion-col></ion-row>
+    
+    <ion-row><ion-col>
+      <ion-item>
+        <ion-label>Autores: {{ref.autores}}</ion-label>
+      </ion-item>
+    </ion-col></ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item *ngIf="ref.tipopub == 1; else tipo2">
+          <ion-label>Tipo: Artículo de Revista</ion-label>
+        </ion-item>
+        <ng-template #tipo2>
+          <ion-item *ngIf="ref.tipopub == 2; else tipo3">
+            <ion-label>Tipo: Artículo de Evento</ion-label>
+          </ion-item>
+        </ng-template>
+        <ng-template #tipo3>
+          <ion-item>
+            <ion-label>Tipo: Otro</ion-label>
+          </ion-item>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+      
+    <ion-row><ion-col>
+      <ion-item>
+        <ion-label>Año: {{ref.anyopub}}</ion-label>
+      </ion-item>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item>
+        <ion-label>Evento/Revista: {{ref.eventorevista}}</ion-label>
+      </ion-item>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item>
+        <ion-label>Código: {{ref.doi}}</ion-label>
+      </ion-item>
+    </ion-col></ion-row>
+
+  </ion-grid>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="ifEdit == false">
+    <ion-fab-button color="" (click)="edit()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  <ng-template #formEdit>
+    <form>
+
+      <ion-item>
+        <ion-label position="floating">Título: </ion-label>
+        <ion-input type="text" #inputTitulopub value="{{ref.titulopub}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Autores: </ion-label>
+        <ion-input type="text" #inputAutores value="{{ref.autores}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo: </ion-label>
+        <ion-select type="number" #inputTipopub value="{{ref.tipopub}}">
+          <ion-select-option value="1">Artículo de Revista</ion-select-option>
+          <ion-select-option value="2">Artículo de Evento</ion-select-option>
+          <ion-select-option value="3">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Año: </ion-label>
+        <ion-input type="number" #inputAnyopub value="{{ref.anyopub}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Evento/Revista: </ion-label>
+        <ion-input type="text" #inputEventorevista value="{{ref.eventorevista}}"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Código: </ion-label>
+        <ion-input type="text" #inputDoi value="{{ref.doi}}"></ion-input>
+      </ion-item>
+
+      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button type="submit" color="" (click)="save(inputTitulopub, inputAutores, inputTipopub, inputEventorevista, inputDoi, inputAnyopub)">
+          <ion-icon name="save"></ion-icon>
+        </ion-fab-button>
+      </ion-fab> 
+    </form>
+  </ng-template>
 
 </ion-content>

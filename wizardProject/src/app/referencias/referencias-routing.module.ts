@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'referencias-detail',
     loadChildren: () => import('./referencias-detail/referencias-detail.module').then( m => m.ReferenciasDetailPageModule)
+  },
+  {
+    path: 'referencias-add',
+    loadChildren: () => import('./referencias-add/referencias-add.module').then( m => m.ReferenciasAddPageModule)
   }
 
 ];

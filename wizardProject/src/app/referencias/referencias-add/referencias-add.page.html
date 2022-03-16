@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/referencias"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Nueva Referencia</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+
+    <ion-item>
+      <ion-label position="floating">Título: </ion-label>
+      <ion-input type="text" #inputTitulopub></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autores: </ion-label>
+      <ion-input type="text" #inputAutores></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo: </ion-label>
+      <ion-select type="number" #inputTipopub>
+        <ion-select-option value="1">Artículo de Revista</ion-select-option>
+        <ion-select-option value="2">Artículo de Evento</ion-select-option>
+        <ion-select-option value="3">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Año: </ion-label>
+      <ion-input type="number" #inputAnyopub></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Evento/Revista: </ion-label>
+      <ion-input type="text" #inputEventorevista></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Código: </ion-label>
+      <ion-input type="text" #inputDoi></ion-input>
+    </ion-item>
+
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button type="submit" color="" (click)="create(inputTitulopub, inputAutores, inputTipopub, inputEventorevista, inputDoi, inputAnyopub)">
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> 
+    
+  </form>
+</ion-content>

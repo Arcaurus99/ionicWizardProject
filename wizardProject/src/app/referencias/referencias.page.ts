@@ -9,7 +9,8 @@ import { FirestoreServiceService } from './firestore-service.service';
 })
 export class ReferenciasPage implements OnInit {
 
-  data = null;
+  coll_data = [];
+  ifUpdate = false;
 
   constructor(
     private router: Router, 
@@ -17,14 +18,21 @@ export class ReferenciasPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.data = await this.fireService.getDocs();
-    console.log(this.data)
+    this.ifUpdate = false;
+    this.fireService.getLastId();
   }
 
-  addNew() {}
+  async ionViewWillEnter() {
+    this.coll_data = await this.fireService.getAllDocs();
+    console.log(this.coll_data);
+  }
 
-  getLast() {
-    this.fireService.getLastDoc();
+  addNew() {
+    this.router.navigate(['/new-referencia'])
+  }
+
+  ref() {
+    this.ifUpdate = true
   }
 
   goToProfile() {
