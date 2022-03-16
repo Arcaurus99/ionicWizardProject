@@ -10,21 +10,26 @@ import { Referencia } from '../referencia.model';
 })
 export class ReferenciasDetailPage implements OnInit {
 
+  referencia: Referencia;
   recipeId;
-  referencia;
+  ifEdit = false;
 
   constructor(
     private activateRouter: ActivatedRoute,
     private fireService: FirestoreServiceService
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.activateRouter.paramMap.subscribe(paramMap => {
       //if (!paramMap) {} //redirect
       this.recipeId = paramMap.get('refId');
     })
-    this.referencia = await this.fireService.getDoc(Number(this.recipeId))
-      .then(() => console.log(this.referencia));
+    this.referencia = this.fireService.getDoc(Number(this.recipeId));
+    console.log(this.referencia);
+  }
+
+  edit() {
+    this.ifEdit = true;
   }
 
 }

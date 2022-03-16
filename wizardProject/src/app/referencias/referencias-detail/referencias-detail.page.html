@@ -1,15 +1,122 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/referencias"></ion-back-button>
     </ion-buttons>
 
-    <ion-title>referencias-detail</ion-title>
+    <ion-title>{{referencia.titulopub}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="trash" style="height: 22px; width: 22px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid class="ion-no-padding">
 
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <ion-img [src]="referencia.photoURL"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row><ion-col>
+      <h1 class="ion-text-center">{{referencia.autores}}</h1>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item *ngIf="ifEdit == false; else editTitulopub">
+        <ion-label>Título: {{referencia.titulopub}}</ion-label>
+      </ion-item>
+      <ng-template #editTitulopub>
+        <ion-item>
+          <ion-label position="floating">Título: </ion-label>
+          <ion-input #inputTitulopub value="{{referencia.titulopub}}"></ion-input>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+    
+    <ion-row><ion-col>
+      <ion-item *ngIf="ifEdit == false; else editAutores">
+        <ion-label>Autores: {{referencia.autores}}</ion-label>
+      </ion-item>
+      <ng-template #editAutores>
+        <ion-item>
+          <ion-label position="floating">Autores: </ion-label>
+          <ion-input #inputAutores value="{{referencia.autores}}"></ion-input>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item *ngIf="referencia.tipopub == 1; else tipo2">
+        <ion-label>Tipo: Articulo de Revista</ion-label>
+      </ion-item>
+      <ng-template #tipo2>
+        <ion-item *ngIf="referencia.tipopub == 2; else tipo3">
+          <ion-label>Tipo: Articulo de Evento</ion-label>
+        </ion-item>
+      </ng-template>
+      <ng-template #tipo3>
+        <ion-item>
+          <ion-label>Tipo: Otro</ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+      
+    <ion-row><ion-col>
+      <ion-item *ngIf="ifEdit == false; else editAnyopub">
+        <ion-label>Año: {{referencia.anyopub}}</ion-label>
+      </ion-item>
+      <ng-template #editAnyopub>
+        <ion-item>
+          <ion-label position="floating">Año: </ion-label>
+          <ion-input #inputAnyopub value="{{referencia.anyopub}}"></ion-input>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item *ngIf="ifEdit == false; else editEventorevista">
+        <ion-label>Evento/Revista: {{referencia.eventorevista}}</ion-label>
+      </ion-item>
+      <ng-template #editEventorevista>
+        <ion-item>
+          <ion-label position="floating">Evento/Revista: </ion-label>
+          <ion-input #inputEventorevista value="{{referencia.eventorevista}}"></ion-input>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+
+    <ion-row><ion-col>
+      <ion-item *ngIf="ifEdit == false; else editDoi">
+        <ion-label>Código: {{referencia.doi}}</ion-label>
+      </ion-item>
+      <ng-template #editDoi>
+        <ion-item>
+          <ion-label position="floating">Código: </ion-label>
+          <ion-input #inputDoi value="{{referencia.doi}}"></ion-input>
+        </ion-item>
+      </ng-template>
+    </ion-col></ion-row>
+
+  </ion-grid>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" *ngIf="ifEdit == false; else btnSave">
+    <ion-fab-button color="" (click)="edit()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ng-template #btnSave>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button color="" (click)="save()">
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ng-template>
 </ion-content>

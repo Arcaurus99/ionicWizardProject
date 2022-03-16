@@ -9,7 +9,7 @@ import { FirestoreServiceService } from './firestore-service.service';
 })
 export class ReferenciasPage implements OnInit {
 
-  data = null;
+  coll_data = [];
 
   constructor(
     private router: Router, 
@@ -17,8 +17,8 @@ export class ReferenciasPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.data = await this.fireService.getDocs();
-    console.log(this.data)
+    this.coll_data = await this.fireService.getDocs();
+    console.log(this.coll_data)
   }
 
   addNew() {}

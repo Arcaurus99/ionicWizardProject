@@ -45,16 +45,18 @@ export class FirestoreServiceService implements OnInit{
     }
   }
 
-  async getDoc(docId) { // By idreferencia
-    await this.lista.find(doc => {
+  getDoc(docId) { // By idreferencia
+    this.lista.find(doc => {
       if (doc.idreferencia === docId) {
-        console.log(doc)
-        return doc.idreferencia === docId
+        this.data_doc = doc
       }
     })
+    //console.log(this.data_doc);
+    return this.data_doc;
   }
 
   async getDocs() {
+    this.lista = [];
     const querySnapshot = await getDocs(collRef);
     querySnapshot.forEach((doc) => {
       //console.log(doc.id, doc.data());
