@@ -34,7 +34,7 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in 
         user = userCredential.user;
-        console.log('data sended');
+        console.log('data sent');
         // console.log(user)
         this.router.navigate(['/referencias']);
       })

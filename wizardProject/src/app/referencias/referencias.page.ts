@@ -17,7 +17,7 @@ export class ReferenciasPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.coll_data = await this.fireService.getDocs();
+    this.coll_data = await this.fireService.getAllDocs();
     console.log(this.coll_data)
   }
 

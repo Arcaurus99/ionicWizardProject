@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Referencia } from './referencia.model';
 
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore"; 
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore"; 
 
 const db = getFirestore();
 const collRef = collection(db, "citas");
@@ -12,14 +12,14 @@ const collRef = collection(db, "citas");
 })
 export class FirestoreServiceService implements OnInit{
 
-  lista = [];
+  lista: any = [];
   id_reference_creator;
   data_doc;
 
   constructor(
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {  
   }
 
   async getLastDoc() {
@@ -55,7 +55,7 @@ export class FirestoreServiceService implements OnInit{
     return this.data_doc;
   }
 
-  async getDocs() {
+  async getAllDocs() {
     this.lista = [];
     const querySnapshot = await getDocs(collRef);
     querySnapshot.forEach((doc) => {
@@ -94,7 +94,7 @@ export class FirestoreServiceService implements OnInit{
   }
 
   async updateDoc(
-      docId,
+      arg_idreferencia: Number,
       arg_titulopub: String,
       arg_autores: String,
       arg_tipopub: Number,
@@ -102,6 +102,36 @@ export class FirestoreServiceService implements OnInit{
       arg_doi: String,
       arg_anyopub: Number
     ) {
+      console.log(
+        arg_idreferencia,
+        arg_titulopub,
+        arg_autores,
+        arg_tipopub,
+        arg_eventorevista,
+        arg_doi,
+        arg_anyopub
+      )
+      const querySnapshot = await getDocs(collRef);
+      querySnapshot.forEach((document) => {
+        const doc_data = document.data();
+        if (doc_data.idreferencia === Number(arg_idreferencia)) {
+          console.log('update in db...', document.id);
+          const docRef = doc(db, "citas", document.id);
+          try {
+            updateDoc(docRef, {
+              titulopub: arg_titulopub,
+              autores: arg_autores,
+              tipopub: arg_tipopub,
+              eventorevista: arg_eventorevista,
+              doi: arg_doi,
+              anyopub: arg_anyopub
+            }).then(() => 
+            console.log('success update'));
+          } catch (e) {
+            console.log('update fail')
+          }
+        }
+      })
 
     }
 
