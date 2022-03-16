@@ -19,7 +19,7 @@ const routes: Routes = [
         loadChildren: () => import('./referencias/referencias.module').then( m => m.ReferenciasPageModule)
       },
       {
-        path: ":placeId",
+        path: ":refId",
         loadChildren: () => import('./referencias/referencias-detail/referencias-detail.module').then( m => m.ReferenciasDetailPageModule)
       }
     ]

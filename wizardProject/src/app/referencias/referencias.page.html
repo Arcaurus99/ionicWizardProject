@@ -21,7 +21,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let item of lista" [routerLink]="['/referencias-detail, referencia.id']">
+    <ion-card *ngFor="let item of data" [routerLink]="['/referencias', item.idreferencia]">
       <ion-card-content>
 
         <ion-item>
@@ -32,4 +32,11 @@
        </ion-card-content>
     </ion-card>
   </ion-list>
+  
 </ion-content>
+
+<ion-footer collapse="fade ">
+  <ion-toolbar>
+    <ion-button expand="block" (click)="addNew()">Agregar Referencia</ion-button>
+  </ion-toolbar>
+</ion-footer>
