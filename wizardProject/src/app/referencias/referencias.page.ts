@@ -18,19 +18,18 @@ export class ReferenciasPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.fireService.lista = [];
-    this.coll_data = await this.fireService.getAllDocs();
-    console.log(this.coll_data);
     this.ifUpdate = false;
+    this.fireService.getLastId();
   }
 
   async ionViewWillEnter() {
-    this.fireService.lista = [];
     this.coll_data = await this.fireService.getAllDocs();
     console.log(this.coll_data);
   }
 
-  addNew() {}
+  addNew() {
+    this.router.navigate(['/new-referencia'])
+  }
 
   ref() {
     this.ifUpdate = true

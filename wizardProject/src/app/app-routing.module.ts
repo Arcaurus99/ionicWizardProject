@@ -25,6 +25,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'new-referencia',
+    loadChildren: () => import('./referencias/referencias-add/referencias-add.module').then(m => m.ReferenciasAddPageModule)
+  },
+  {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
