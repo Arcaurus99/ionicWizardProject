@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { on } from 'events';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { FirestoreServiceService } from '../firestore-service.service';
 import { Referencia } from '../referencia.model';
 
@@ -16,8 +16,10 @@ export class ReferenciasDetailPage implements OnInit {
   ifEdit = false;
 
   constructor(
+    private router: Router,
     private activateRouter: ActivatedRoute,
-    private fireService: FirestoreServiceService
+    private fireService: FirestoreServiceService,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -62,8 +64,25 @@ export class ReferenciasDetailPage implements OnInit {
       }
     }
 
-  delete() {
-    
+  async delete() {
+    const alertElement = await this.alertCtrl.create({
+      header: 'Eliminar',
+      message: 'Esta accion borrará definitivamente la referencia. ¿Estas seguro que quieres eliminarla?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.fireService.deleteDoc(this.recipeId)
+              .then(() => this.router.navigate(['/referencias']))
+          }
+        }
+      ]
+    });
+    await alertElement.present();
   }
   
 }

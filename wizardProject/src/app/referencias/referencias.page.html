@@ -3,6 +3,7 @@
 
     <ion-button (click)="ngOnInit()">
       <ion-icon name="logo-ionic"></ion-icon>
+      <ion-badge color="warning" mode="md" *ngIf="ifUpdate == true">Updates!</ion-badge >
     </ion-button>
 
     <ion-title>Referencias</ion-title>
@@ -19,7 +20,7 @@
 
 <ion-content>
   <ion-list scrollX="false">
-    <ion-item *ngFor="let item of coll_data" [routerLink]="['/referencias', item.idreferencia]" style="padding: 10px 0 ">
+    <ion-item *ngFor="let item of coll_data" (click)="ref()" [routerLink]="['/referencias', item.idreferencia]" style="padding: 10px 0 ">
 
       <ion-avatar slot="start">
         <ion-img [src]="item.photoURL"></ion-img>

@@ -90,7 +90,14 @@ export class FirestoreServiceService implements OnInit{
     }
   
   async deleteDoc(docId) {
-    await this.deleteDoc(doc(db, "citas", docId));
+    const querySnapshot = await getDocs(collRef);
+    querySnapshot.forEach(async (document) => {
+      const doc_data = document.data();
+      if (doc_data.idreferencia === Number(docId)) {
+        await this.deleteDoc(doc(db, "citas", document.id))
+          .then(() => console.log('reference deleted'))
+      }
+    });
   }
 
   async updateDoc(
@@ -131,7 +138,7 @@ export class FirestoreServiceService implements OnInit{
             console.log('update fail')
           }
         }
-      })
+      });
 
     }
 
